@@ -1,0 +1,52 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blog>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("578e5f5a-5811-45e0-980f-4a95da24646e"))
+    .Children()
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>@Model.Value("title")</h1>
+                            <span class="subheading">@Model.Value("subtitle")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+
+ <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+	@foreach (var item in selection)
+	{
+		
+		    <div class="post-preview">
+			<a href="@item.Url()">
+			<h2 class="post-title">@item.Name</h2>
+			<h3 class="post-subtitle">@item.Name()</h3></a>
+			 <p class="post-meta">
+                Posted by
+                <a href="#!">Start Bootstrap</a>
+                on September 24, 2023
+             </p>
+            </div>
+		   
+            <!-- Divider-->
+            <hr class="my-4" />
+	}
+</div>
+</div>
+</div>
