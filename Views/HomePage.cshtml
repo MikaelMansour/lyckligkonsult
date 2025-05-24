@@ -35,12 +35,11 @@
                     <div class="card-body">
                 <div class="row">
                     <div class="col-lg-3 text-center">
-                        <img src="@Model.ProfilePicture.Url()" class="img-fluid mb-3" alt="user" />
+                        <img src="@Model.ProfilePicture?.Url()" class="img-fluid mb-3" alt="user" />
                     </div>
                     <div class="col-lg-9">
                         <h4>@Model.ProfileHeader</h4>
-                        <p>@Model.ProfileDescription</p>
-                        <div class="mb-3">
+                        <div class="">
                             @foreach(var contactTag in Model.ProfileTags.Split(","))
                             {
                               <span class="contact-tag">@contactTag.Trim()</span>
@@ -49,21 +48,13 @@
                         <div class="table-responsive">
                             <table class="table table-borderless mb-0">
                                 <tbody>
-                                    <tr>
+                                     <tr>
                                         <th scope="row" class="p-1">Work :</th>
                                         <td class="p-1">Sogeti (Jönköping)</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="p-1">Experience :</th>
-                                        <td class="p-1">10+ years</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row" class="p-1">Country :</th>
                                         <td class="p-1">Sweden</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="p-1">Phone :</th>
-                                        <td class="p-1">+46 700 433 191</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="p-1">LinkedIn :</th>
@@ -91,9 +82,6 @@
                 on @item.CreateDate
              </p>
             </div>
-		   
-            <!-- Divider-->
-            <hr class="my-4" />
 	}
 </div>
 </div>
