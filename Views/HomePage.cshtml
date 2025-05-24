@@ -50,15 +50,15 @@
                                 <tbody>
                                      <tr>
                                         <th scope="row" class="p-1">Work :</th>
-                                        <td class="p-1">Sogeti (Jönköping)</td>
+                                        <td class="p-1">@Model?.ProfileWorkplace</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="p-1">Country :</th>
-                                        <td class="p-1">Sweden</td>
+                                        <td class="p-1">@Model?.ProfileCountry</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="p-1">LinkedIn :</th>
-                                        <td class="p-1">/in/lyckligkonsult/</td>
+                                        <td class="p-1">@Model?.ProfileLinkedIn</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             </div>
-            <h2>My latest blog posts</h2>
+            <h2>Blog posts</h2>
             <hr />
 	@foreach (var item in selection)
 	{
