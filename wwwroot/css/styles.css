@@ -11030,6 +11030,7 @@ header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
   font-size: 3rem;
+  overflow-wrap: break-word;
 }
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading {
