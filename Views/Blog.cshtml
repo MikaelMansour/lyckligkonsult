@@ -33,11 +33,10 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
 	@foreach (var item in selection)
 	{
-		
 		    <div class="post-preview">
 			<a href="@item.Url()">
-			<h2 class="post-title">@item.Name</h2>
-			<h3 class="post-subtitle">@item.Name</h3></a>
+			<h2 class="post-title">@item.Title</h2>
+			<h3 class="post-subtitle">@item.Preamble</h3></a>
 			 <p class="post-meta">
                 Posted by
                 <a href="#!">@Model.Author</a>
