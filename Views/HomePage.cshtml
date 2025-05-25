@@ -67,8 +67,11 @@
                 </div>
             </div>
             </div>
+    @if(selection.Any()){
             <h2>@Model.BlogPosts</h2>
             <hr />
+    }
+        
 	@foreach (var item in selection)
 	{
 		
