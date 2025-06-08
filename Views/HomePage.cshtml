@@ -67,25 +67,6 @@
                 </div>
             </div>
             </div>
-    @if(selection.Any()){
-            <h2>@Model.BlogPosts</h2>
-            <hr />
-    }
-        
-	@foreach (var item in selection)
-	{
-		
-		    <div class="post-preview">
-			<a href="@item.Url()">
-			<h2 class="post-title">@item.Title</h2>
-			<h3 class="post-subtitle">@item.Preamble</h3></a>
-			 <p class="post-meta">
-                Posted by
-                @item.Author
-                on @item.PublishedOn
-             </p>
-            </div>
-	}
 </div>
 </div>
 </div>
