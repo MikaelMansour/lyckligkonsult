@@ -11120,6 +11120,7 @@ header.masthead .post-heading .meta a {
   margin-bottom: 0.625rem;
 }
 .post-preview > a > .post-subtitle {
+  font-size: 1.125rem;
   font-weight: 300;
   margin-bottom: 0.625rem;
 }
