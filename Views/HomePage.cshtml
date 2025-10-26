@@ -12,61 +12,97 @@
     .OfType<BlogPost>()
     .Where(x => x.IsVisible())
     .OrderByDescending(x => x.CreateDate);
+    
+    var tags = @Model.Value("profileTags").ToString().Split(",");
 }
-<!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>@Model.Value("title")</h1>
-                            <span class="subheading">@Model.Value("subtitle")</span>
-                        </div>
-                    </div>
-                </div>
+
+@{
+    	var events = Umbraco.ContentAtRoot().FirstOrDefault()
+    .Descendants()
+    .OfType<Event>()
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+  <main class="container my-4 my-md-5">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-6">
+          <div class="eyebrow mb-2">@Model.Value("title")</div>
+          <h1 class="display-5 fw-bold mb-3">Mikael Mansour</h1>
+          <p class="lead text-muted-ink mb-4">@Model.Value("subtitle")</p>
+          <div class="d-flex flex-wrap gap-2 mb-2">
+              @foreach(var tag in tags){
+                <span class="chip chip-green">@tag</span>
+              }
             </div>
-        </header>
-        <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
-            
- <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="card m-b-30">
-                    <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-3 text-center">
-                        <img src="@Model.ProfilePicture?.Url()" class="img-fluid mb-3" alt="user" />
-                    </div>
-                    <div class="col-lg-9">
-                        <h4>@Model.ProfileHeader</h4>
-                        <div class="mb-3">
-                            @foreach(var contactTag in Model.ProfileTags.Split(","))
-                            {
-                              <span class="contact-tag">@contactTag.Trim()</span>
-                            }
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless mb-0">
-                                <tbody>
-                                     <tr>
-                                        <th scope="row" class="p-1">Work :</th>
-                                        <td class="p-1">@Model?.ProfileWorkplace</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="p-1">Country :</th>
-                                        <td class="p-1">@Model?.ProfileCountry</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="p-1">LinkedIn :</th>
-                                        <td class="p-1">@Model?.ProfileLinkedIn</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="col-lg-6">
+          <figure class="hero-figure ratio ratio-21x9">
+            <img class="object-cover" src="media/u4rl222n/coming-soon.png" alt="Nordic landscape" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED POSTS -->
+    <section class="section" id="blog">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h3 section-title m-0">Posts</h2>
+        <a href="/blog" class="text-muted-ink small">All posts <i class="bi bi-arrow-right-short"></i></a>
+      </div>
+      <div class="row g-4">
+        @foreach (var post in selection.Take(3))
+        {
+          <div class="col-12 col-md-6 col-xl-4">
+          <article class="card-clean h-100 p-4">
+            <h3 class="h5 mb-2">@post.Title</h3>
+            <p class="small text-muted-ink mb-3">@post.Preamble</p>
+            <div class="small text-muted-ink d-flex justify-content-between"><span>@post.PublishedOn.ToString("MMMM dd, yyyy")</span><a href="@post.Url()">Read more..</a></div>
+          </article>
+        </div>
+        }
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h3 section-title m-0">Events</h2>
+      </div>
+      <div class="timeline">
+      @foreach (var ev in events)
+        {
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <article class="card-clean p-4 ms-3">
+            <div class="d-flex flex-wrap gap-3 align-items-center mb-1">
+              <span class="chip">@ev.Status</span>
+              <span class="small text-muted-ink"><i class="bi bi-calendar-event me-1"></i>@ev.Date</span>
+              <span class="small text-muted-ink"><i class="bi bi-geo-alt me-1"></i>@ev.City</span>
             </div>
-            </div>
-</div>
-</div>
-</div>
+            <h3 class="h6 mb-2">@ev.Title</h3>
+            <p class="small text-muted-ink mb-0">@ev.Description</p>
+            <a target="_blank" href="@ev.Link">Läs mer</a>
+          </article>
+        </div>  
+        }
+      </div>
+    </section>
+
+    <section class="section" id="connect">
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card-clean p-4 p-lg-5">
+            <h2 class="h4 mb-3">Get in touch</h2>
+            <p class="text-muted-ink">Questions, collaborations or just connect?</p>
+           <ul class="list-unstyled small m-0">
+              <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Sogeti Sweden (Jönköping)</li>
+              <li class="mb-0"><i class="bi bi-linkedin me-2"></i>linkedin.com/in/lyckligkonsult</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

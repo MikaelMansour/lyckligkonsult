@@ -13,40 +13,33 @@
     .Where(x => x.IsVisible())
     .OrderByDescending(x => x.CreateDate);
 }
-<!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>@Model.Title</h1>
-                            <span class="subheading">@Model.Subtitle</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
 
- <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-	@foreach (var item in selection)
+<main class="container my-4 my-md-5">
+
+<header class="mb-4">
+  <h1 class="h2">@Model.Title</h1>
+  <span class="subheading">@Model.Subtitle</span>
+</header>
+
+<div class="row g-4">
+  <!-- repeatable post cards -->
+  	@foreach (var item in selection)
 	{
-		    <div class="post-preview">
-			<a href="@item.Url()">
-			<h2 class="post-title">@item.Title</h2>
-			<h3 class="post-subtitle">@item.Preamble</h3></a>
-			 <p class="post-meta">
-                Posted by
-                <a href="#!">@item.Author</a>
-                on @item.PublishedOn
-             </p>
+        <div class="col-12 col-md-6 col-xl-4">
+        <article class="card-clean h-100">
+            <div class="p-4">
+            <div class="d-flex gap-2 mb-2">
+            @foreach(var category in item.Categories){
+                <span class="chip">@category</span>
+            }
             </div>
-		   
-            <!-- Divider-->
-            <hr class="my-4" />
+            <h2 class="h5"><a class="text-decoration-none text-reset" href="@item.Url()">@item.Title</a></h2>
+            <p class="small text-muted-ink mb-3">@item.Preamble.</p>
+            <div class="small text-muted-ink d-flex justify-content-between"><span>@item.PublishedOn.ToString("MMMM dd, yyyy")</span></div>
+            </div>
+        </article>
+        </div>
 	}
+  
 </div>
-</div>
-</div>
+</main>
