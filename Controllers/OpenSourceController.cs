@@ -28,7 +28,8 @@ namespace LyckligKonsult.Controllers
             try
             {
                 // Change this to the parent node ID where OpenItems are stored
-                const int parentId = 1077;
+                // Update: This is a quick fix, should be done properly asap.
+                const int parentId = 1085;
 
                 var content = _contentService.Create(model.Name, parentId, "libraryItem");
 
